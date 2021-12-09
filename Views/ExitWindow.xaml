@@ -1,0 +1,21 @@
+﻿<Window x:Class="BibliotekaWPF.Views.ExitWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BibliotekaWPF.Views"
+        mc:Ignorable="d"
+        Title="ExitWindow" Height="200" Width="300"
+         WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        Background="Transparent"
+        AllowsTransparency="true"
+        >
+    <Border Background="#272537" CornerRadius="20">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock   Height="35"  Text="Czy chcesz zamknąć program?" FontSize="15" Foreground="White"   FontFamily="/Fonts/#Poppins"></TextBlock>
+            <Button Width="100" Click="confirmExit"  Height="35" Content=" Tak" Style="{StaticResource CustomButton}"></Button>
+            <Button Width="100" Click="cancelExit"  Height="35" Content=" Nie" Style="{StaticResource CustomButton}"></Button>
+        </StackPanel>
+    </Border>
+</Window>
