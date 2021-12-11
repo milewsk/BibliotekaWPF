@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using BibliotekaWPF.Views;
+using Microsoft.EntityFrameworkCore;
 
 namespace BibliotekaWPF.ViewModel
 {
@@ -66,12 +67,12 @@ namespace BibliotekaWPF.ViewModel
         {
             using (var context = new Context.AppContext())
             {
-                User editUser = user;
-                if(editUser.Password != newPassword)
+                
+                if(user.Password != newPassword)
                 {
-                    var query = (from u in context.Users where editUser.Username == u.Username && u.Password == editUser.Password select u).First();
-                    query.Password = newPassword;
-                    context.Users.Update(query);
+                    user.Password = newPassword;
+                    context.Attach(user).State = EntityState.Modified;
+                    context.SaveChanges();
                 
                 }
             }

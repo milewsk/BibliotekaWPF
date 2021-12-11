@@ -34,11 +34,11 @@ namespace BibliotekaWPF.Views
         public void Login(object sender, RoutedEventArgs e)
         {
 
-            if (UsernameTextBox.Text.Length > 4 && UsernameTextBox.Text.Length < 20)
+            if (UsernameTextBox.Text.Length < 4 && UsernameTextBox.Text.Length > 20)
             {
                 UsernameTextBox.Focus();
             }
-            else if (PasswordTextBox.Text.Length > 4 && !char.IsUpper(PasswordTextBox.Text[0]))
+            else if (PasswordTextBox.Text.Length < 4 && !char.IsUpper(PasswordTextBox.Text[0]))
             {
                 PasswordTextBox.Focus();
             }

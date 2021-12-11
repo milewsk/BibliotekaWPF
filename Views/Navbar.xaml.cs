@@ -22,7 +22,7 @@ namespace BibliotekaWPF.Views
     public partial class Navbar : UserControl
     {
       public static User CurrentUser { get; set; }
-      private AccountModel accountModel { get; set; }
+      private AccountModel accountModel = new AccountModel();
 
         public Navbar()
         {
