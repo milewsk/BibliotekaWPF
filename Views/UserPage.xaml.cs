@@ -14,13 +14,15 @@ using System.Windows.Shapes;
 namespace BibliotekaWPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy HomeView.xaml
+    /// Logika interakcji dla klasy UserPage.xaml
     /// </summary>
-    public partial class HomeView : Page
+    public partial class UserPage : Page
     {
-        public HomeView()
+        public UserPage()
         {
             InitializeComponent();
+            this.Navbar.Content = new Navbar();
+            this.Sidebar.Content = new SideBar();
         }
     }
 }

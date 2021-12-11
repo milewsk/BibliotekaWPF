@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BibliotekaWPF.Models;
+using BibliotekaWPF.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -19,30 +21,64 @@ namespace BibliotekaWPF.Views
     /// </summary>
     public partial class Navbar : UserControl
     {
-       
+      public static User CurrentUser { get; set; }
+      private AccountModel accountModel { get; set; }
+
         public Navbar()
         {
             InitializeComponent();
+            if(CurrentUser != null)
+           {
+                NavbarButton2.Content = "Moje konto";
+                NavbarButton3.Content = "Wyloguj się";
+                if (CurrentUser.isAdmin == 1) 
+                {
+                    NavbarButton1.Visibility = Visibility.Visible;
+                }
+            }
             
         }
-     
+        public static void setUser(User user)
+        {
+            CurrentUser = user;
+        }
+        public static User getUser()
+        {
+            return CurrentUser;
+        }
+
         //może tu zrobić parametry w konsztruktorze
 
-        public Navbar(bool option)
+        public void Button1(object sender, RoutedEventArgs e)
         {
-
-            InitializeComponent();
-            ChangeDisplay(option);
+            ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
         }
-        public void ChangeDisplay(bool hi ) {
-            if(hi) {
-                b1.Content = "test display";
+
+        public void Button2(object sender, RoutedEventArgs e)
+        {
+            if (CurrentUser == null)
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new LoginPage();
             }
             else
             {
-                b1.Content = "Zaloguj";
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new UserPage();
             }
         }
-
+        public void Button3(object sender, RoutedEventArgs e)
+        {
+            if (CurrentUser == null)
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new RegisterPage();
+            }
+            else
+            {
+                //logout
+                accountModel.LogOut();
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new HomePage();
+            }
+        }
     }
-}
+
+ }
+
