@@ -27,9 +27,7 @@ namespace BibliotekaWPF.Views
         private readonly Author author = new Author();
         public BookAdvancePage(string str)
         {
-            string catName;
-            
-            
+            string catName;               
             using (var context = new Context.AppContext()) {
                 var bookQuery = (from b in context.Books where b.Title == str select b).First();
                 catName = (from c in context.Categories where c.Id == bookQuery.IdCategory select c.Name).First();
@@ -39,6 +37,8 @@ namespace BibliotekaWPF.Views
             }
 
             InitializeComponent();
+            this.Navbar.Content = new Navbar();
+            this.Sidebar.Content = new SideBar();
 
             TitleText.Text += book.Title;
             CategoryText.Text += catName;
@@ -46,8 +46,6 @@ namespace BibliotekaWPF.Views
             AuthorText.Text += author.Name +" " + author.Surname;
             DateText.Text += book.YearPublished.ToString();
             AvailableText.Text += book.Available > 0 ? "Tak" : "Nie";
-
-
         }
 
         public void BorrowBook(object sender, RoutedEventArgs e)

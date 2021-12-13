@@ -27,6 +27,7 @@ namespace BibliotekaWPF.Views
             this.Navbar.Content = new Navbar();
             this.Sidebar.Content = new SideBar();
 
+            datesList.ItemsSource = null;
             List<string> books = bookModel.GetAllBooks();
             List<Button> buttonBooks = new List<Button>();
 

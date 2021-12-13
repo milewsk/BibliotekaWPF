@@ -65,8 +65,8 @@ namespace BibliotekaWPF.ViewModel
             using (var context = new Context.AppContext())
             {
                 var group = (from b in context.Groups where b.Name == groupName select b).First();
-                if (!IsMember(groupName))
                 {
+                if (!IsMember(groupName))
                     context.User_Groups.Add(new User_Group() { IdGroup = group.Id, IdUser = Views.Navbar.getUser().Id });
                     context.SaveChanges();
 

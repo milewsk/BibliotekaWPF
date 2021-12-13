@@ -9,6 +9,24 @@
       Title="LoansPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Border BorderBrush="White" BorderThickness="0,0,0,0.25" ></Border>
+            <TextBlock Text="Biblioteka" FontFamily="/Fonts/#Poppins" VerticalAlignment="Center" HorizontalAlignment="Center"  FontSize="32" Foreground="Wheat"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <ContentControl x:Name="Navbar"></ContentControl>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <ContentControl x:Name="Sidebar"></ContentControl>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1"></Grid>
     </Grid>
 </Page>
