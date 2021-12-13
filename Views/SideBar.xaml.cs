@@ -31,6 +31,9 @@ namespace BibliotekaWPF.Views
             exitWin.Show();
         }
 
-       
+        public void BookPage(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BooksPage();
+        }
     }
 }

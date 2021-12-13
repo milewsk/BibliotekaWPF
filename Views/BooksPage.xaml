@@ -41,7 +41,7 @@
                 <ItemsControl Margin="0,20" Width="400" Height="300" x:Name="datesList">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button Height="30" Content="{Binding ButtonContent}" Style="{StaticResource CustomButton}"/>
+                            <Button  Content="{Binding ButtonContent}" Style="{StaticResource CustomButton}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

@@ -54,6 +54,8 @@ namespace BibliotekaWPF.ViewModel
                     context.Attach(book).State = EntityState.Modified;
                     var newPurchase = new Purchase() { UserId = Views.Navbar.getUser().Id, BookId = book.Id, Date = DateTime.Now };
                     context.Purchases.Add(newPurchase);
+                    context.SaveChanges();
+
                 }
             }
         }
