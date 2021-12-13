@@ -50,7 +50,9 @@ namespace BibliotekaWPF.Views
 
         public void FilterClick(object sender, RoutedEventArgs e) 
         {
-            datesList.Items.Clear();
+            //datesList.Items.Clear();
+            datesList.ItemsSource = null;
+
             List<string> books = bookModel.GetFillteredBooks(FilterTextBox.Text);
             List<Button> buttonBooks = new List<Button>();
 
@@ -59,7 +61,6 @@ namespace BibliotekaWPF.Views
                 Button btn = new Button();
                 btn.Content = str;
                 btn.Click += new RoutedEventHandler(BookAdvance);
-
                 buttonBooks.Add(btn);
             }
             datesList.ItemsSource = buttonBooks;
