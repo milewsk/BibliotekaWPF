@@ -31,7 +31,7 @@
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
             <StackPanel>
-                <TextBlock HorizontalAlignment="Center" Text="Szczegóły książki" FontSize="30" Margin="0,5" Foreground="Wheat"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" Text="Szczegóły książki" FontSize="30" Margin="0,30,0,10" Foreground="Wheat"></TextBlock>
                 <TextBlock HorizontalAlignment="Center" Text="Tytuł: " Name="TitleText" FontSize="20" Foreground="White" Margin="0,5"></TextBlock>
                 <TextBlock Name="AuthorText" Text="Autor: " FontSize="20" HorizontalAlignment="Center" Foreground="White" Margin="0,5"></TextBlock>
                 <TextBlock Name="DateText" Text="Rok wydania: " FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="0,5"></TextBlock>

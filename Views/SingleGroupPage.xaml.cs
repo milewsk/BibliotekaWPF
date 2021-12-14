@@ -43,6 +43,9 @@ namespace BibliotekaWPF.Views
                 var allMeetings = (from x in context.Meetings where x.IdGroup == bookQuery.Id select x).ToList();
                 group = bookQuery;
 
+                NameTextBlock.Text = group.Name;
+                CountTextBlock.Text += group.MembersCount.ToString();
+
                 if (IsMember)
                 {
                     buttonAdd.Content = "Odejdź";
@@ -54,15 +57,23 @@ namespace BibliotekaWPF.Views
                     var textblock = new TextBlock()
                     {
                         Foreground = new SolidColorBrush(Colors.White),
+                        FontSize = 15,
+                        HorizontalAlignment =  System.Windows.HorizontalAlignment.Center,
                         Margin = new Thickness(0, 10, 0, 10),
-                    }; ;
+                    }; 
                     textblock.Text = que;
                     UsersNames.Add(textblock);
                 }
 
                 foreach(var meeting in allMeetings)
                 {
-                    var textblock = new TextBlock();
+                    var textblock = new TextBlock()
+                    {
+                        Foreground = new SolidColorBrush(Colors.White),
+                        FontSize = 15,
+                        HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
+                        Margin = new Thickness(0, 10, 0, 10),
+                    };
                     textblock.Text = $"Data: {meeting.Date.ToShortDateString()} Czas trwania: {meeting.Duration} min";                  
                     Meetings.Add(textblock);
                 }

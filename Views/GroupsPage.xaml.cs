@@ -32,7 +32,12 @@ namespace BibliotekaWPF.Views
 
             foreach (string str in groups)
             {
-                Button btn = new Button();
+                Button btn = new Button()
+                {
+                    Style = FindResource("CustomButton") as Style,
+                    Margin = new Thickness(0, 10, 0, 10),
+
+                }; ;
                 btn.Content = str;
                 btn.Click += new RoutedEventHandler(GroupAdvance);
 

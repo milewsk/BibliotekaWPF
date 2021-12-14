@@ -33,13 +33,14 @@
             <StackPanel Orientation="Vertical">
                 <TextBlock Name="NameTextBlock" Text="" Margin="0,10" FontSize="30" FontWeight="Bold" Foreground="Wheat" HorizontalAlignment="Center"></TextBlock>
                 <TextBlock Name="CountTextBlock" Text="Liczba członków: " Margin="0,5" FontSize="20"  Foreground="White" HorizontalAlignment="Center"></TextBlock>
-                <Button Name="buttonAdd" Content="Dołącz" Click="AddToGroup" Width="150" Margin="0,10" Style="{StaticResource CustomButton}"></Button>
+                <Button Name="buttonAdd" Content="Dołącz" Foreground="Wheat" Click="AddToGroup" Width="150" Margin="0,10" Style="{StaticResource CustomButton}" FontSize="20"></Button>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <TextBlock Margin="150,0" Text="Lista członków " FontSize="15"  Foreground="White" ></TextBlock>
-                    <TextBlock Text="Lista spotkań" Margin="50,0" FontSize="15"  Foreground="White" ></TextBlock>
+                    <TextBlock Margin="150,0" Text="Lista członków " FontSize="18"  Foreground="White" ></TextBlock>
+                    <TextBlock Text="Lista spotkań" Margin="50,0" FontSize="18"  Foreground="White" ></TextBlock>
                 </StackPanel>
                 <Grid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="3" Margin="60,0,0,0">
 
                         <ItemsControl Margin="0,10" Width="300" Height="300" x:Name="memberList">
 
@@ -61,6 +62,6 @@
                 </Grid>
             </StackPanel>
         </Grid>
-        </Grid>
-    
+    </Grid>
+
 </Page>

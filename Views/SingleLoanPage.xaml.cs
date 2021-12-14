@@ -18,7 +18,7 @@ namespace BibliotekaWPF.Views
     /// </summary>
     public partial class SingleLoanPage : Page
     {
-        public SingleLoanPage()
+        public SingleLoanPage(string id)
         {
             InitializeComponent();
         }

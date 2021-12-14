@@ -28,6 +28,34 @@ namespace BibliotekaWPF.ViewModel
                 return books;
         }
 
+        public List<string> GetLoans(){
+            List<string> loans = new List<string>();
+            using (var context = new Context.AppContext())
+            {
+                var query = (from b in context.Loans where b.IdUser == Views.Navbar.getUser().Id select b).ToList();
+                foreach(Loan loan in query)
+                {
+                    var title = (from b in context.Books where b.Id == loan.IdBook select b.Title).First();
+                    loans.Add($"Tytuł: {title}, Data wypożyczenia: {loan.DateOfLoan}, Termin zwrotu: {loan.ReturnDate}");
+                }
+            }
+            return loans;
+        }
+
+        public Dictionary<int,string> GetLoans1()
+        {
+            Dictionary<int,string> loans = new Dictionary<int, string>();
+            using (var context = new Context.AppContext())
+            {
+                var query = (from b in context.Loans where b.IdUser == Views.Navbar.getUser().Id select b).ToList();
+                foreach (Loan loan in query)
+                {
+                    var title = (from b in context.Books where b.Id == loan.IdBook select b.Title).First();
+                    loans.Add(loan.Id,$"Tytuł: {title}, Data wypożyczenia: {loan.DateOfLoan}, Termin zwrotu: {loan.ReturnDate}");
+                }
+            }
+            return loans;
+        }
         public List<string> GetFillteredBooks(string name)
         {
             List<string> books = new List<string>();

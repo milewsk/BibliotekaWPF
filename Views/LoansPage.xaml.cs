@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibliotekaWPF.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,9 +19,42 @@ namespace BibliotekaWPF.Views
     /// </summary>
     public partial class LoansPage : Page
     {
+        private readonly BookModel bookModel = new BookModel();
         public LoansPage()
         {
+            loansList.ItemsSource = null;
             InitializeComponent();
+
+            
+            this.Navbar.Content = new Navbar();
+            this.Sidebar.Content = new SideBar();
+
+            List<string> loans = bookModel.GetLoans();
+            List<Button> buttonGroups = new List<Button>();
+            Dictionary<int, string> loans1 = bookModel.GetLoans1();
+
+            foreach ( var str in loans1)
+            {
+                Button btn = new Button()
+                {
+                    Style = FindResource("CustomButton") as Style,
+                    Margin = new Thickness(0, 10, 0, 10),
+
+                }; ;
+                btn.Content = str.Value;
+                btn.Click += new RoutedEventHandler(LoanAdvance);
+                btn.Tag = str.Key.ToString();
+
+                buttonGroups.Add(btn);
+            }
+            loansList.ItemsSource = buttonGroups;
+        }
+
+        private void LoanAdvance(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            string str = button.Tag.ToString();
+            ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new SingleLoanPage(str);
         }
     }
 }

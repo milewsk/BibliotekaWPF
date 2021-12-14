@@ -37,8 +37,8 @@
                 <TextBox Name="UsernameTextBox" Width="180" Height="30" IsEnabled="True" Style="{StaticResource TextBoxTheme}" HorizontalContentAlignment="Center" VerticalAlignment="Center" FontSize="15" Foreground="White"></TextBox>
                 <TextBlock Text="Hasło" Foreground="White" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"></TextBlock>
                 <TextBox  Name="PasswordTextBox" Width="180" Height="30" IsEnabled="True" Style="{StaticResource TextBoxTheme}"  VerticalAlignment="Center" FontSize="15" Foreground="White"></TextBox>
-                <Button Content="Zarejestruj się" Click="Register" Name="registerButton" Margin="10"  Width="150" Height="35" Style="{StaticResource CustomButton}"  ></Button>
-                <Button Content="Powrót" Click="goBack" Name="backButton" Width="100" Foreground="Wheat" Style="{StaticResource CustomButton}"  ></Button>
+                <Button Content="Zarejestruj się" Click="Register" Name="registerButton" Margin="10"  Width="150" Height="35" Style="{StaticResource CustomButton}"  FontSize="20" ></Button>
+                <Button Content="Powrót" Click="goBack" Name="backButton" Width="100" Foreground="Wheat" Style="{StaticResource CustomButton}" FontSize="15"  ></Button>
             </StackPanel>
         </Grid>
     </Grid>

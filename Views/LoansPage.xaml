@@ -27,6 +27,19 @@
         <Grid Grid.Row="1" Grid.Column="0">
             <ContentControl x:Name="Sidebar"></ContentControl>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1"></Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <StackPanel>
+                <TextBlock Text="Twoje wypożyczenia" FontSize="30" FontWeight="Bold" Foreground="Wheat" HorizontalAlignment="Center" Margin="0,10"></TextBlock>
+                <TextBlock Text="Filtruj po nazwie" FontSize="20" Margin="20,0,0,0"  Foreground="White" HorizontalAlignment="Center"></TextBlock>
+                <ItemsControl Margin="0,20" Width="400" Height="250" x:Name="loansList">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding ButtonContent}" Background="Transparent"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Page>
