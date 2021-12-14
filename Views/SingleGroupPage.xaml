@@ -31,7 +31,7 @@
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
             <StackPanel Orientation="Vertical">
-                <TextBlock Name="NameTextBlock" Text="" Margin="0,10" FontSize="30" FontWeight="Bold" Foreground="Wheat" HorizontalAlignment="Center"> </TextBlock>
+                <TextBlock Name="NameTextBlock" Text="" Margin="0,10" FontSize="30" FontWeight="Bold" Foreground="Wheat" HorizontalAlignment="Center"></TextBlock>
                 <TextBlock Name="CountTextBlock" Text="Liczba członków: " Margin="0,5" FontSize="20"  Foreground="White" HorizontalAlignment="Center"></TextBlock>
                 <Button Name="buttonAdd" Content="Dołącz" Click="AddToGroup" Width="150" Margin="0,10" Style="{StaticResource CustomButton}"></Button>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
@@ -40,16 +40,16 @@
                 </StackPanel>
                 <Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        
+
                         <ItemsControl Margin="0,10" Width="300" Height="300" x:Name="memberList">
-                            
+
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock  Text="{Binding ButtonContent}" Background="Transparent" Foreground="White" FontSize="15"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                   
+
                         <ItemsControl  Margin="0,10" Width="300" Height="300" x:Name="meetingList">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -59,11 +59,8 @@
                         </ItemsControl>
                     </StackPanel>
                 </Grid>
-                
             </StackPanel>
-            
-                <StackPanel></StackPanel>
-            </Grid>
+        </Grid>
         </Grid>
     
 </Page>

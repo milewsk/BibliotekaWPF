@@ -33,7 +33,11 @@ namespace BibliotekaWPF.Views
 
             foreach(string str in books)
             {
-                Button btn = new Button();
+                Button btn = new Button()
+                {
+                    Style = FindResource("CustomButton") as Style,
+                    Margin = new Thickness(0, 10, 0, 10),
+                };
                 btn.Content = str;
                 btn.Click += new RoutedEventHandler(BookAdvance);
 
@@ -59,7 +63,11 @@ namespace BibliotekaWPF.Views
 
             foreach (string str in books)
             {
-                Button btn = new Button();
+                Button btn = new Button()
+                {
+                    Style = FindResource("CustomButton") as Style,
+                    Margin = new Thickness(0, 10, 0, 10),
+                }; ;
                 btn.Content = str;
                 btn.Click += new RoutedEventHandler(BookAdvance);
                 buttonBooks.Add(btn);
@@ -77,7 +85,11 @@ namespace BibliotekaWPF.Views
 
             foreach (string str in books)
             {
-                Button btn = new Button();
+                Button btn = new Button()
+                {
+                    Style = FindResource("CustomButton") as Style,
+                    Margin = new Thickness(0, 10, 0, 10),
+                }; ;
                 btn.Content = str;
                 btn.Click += new RoutedEventHandler(BookAdvance);
 
