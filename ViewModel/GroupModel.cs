@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using BibliotekaWPF.Views;
+using Microsoft.EntityFrameworkCore;
 
 namespace BibliotekaWPF.ViewModel
 {
@@ -68,6 +69,8 @@ namespace BibliotekaWPF.ViewModel
                 {
                 if (!IsMember(groupName))
                     context.User_Groups.Add(new User_Group() { IdGroup = group.Id, IdUser = Views.Navbar.getUser().Id });
+                    group.MembersCount++;
+                    context.Attach(group).State = EntityState.Modified;
                     context.SaveChanges();
 
                 }
@@ -83,7 +86,8 @@ namespace BibliotekaWPF.ViewModel
                 {
                     var query = (from g in context.User_Groups where g.IdGroup == @group.Id && g.IdUser == Views.Navbar.getUser().Id select g).First();
                     context.User_Groups.Remove(query);
-                    context.SaveChanges();
+                    group.MembersCount--;
+                    context.Attach(group).State = EntityState.Modified;
 
                 }
             }
@@ -118,15 +122,41 @@ namespace BibliotekaWPF.ViewModel
             }
             return true;
         }
-        public bool AddGroup()
+        public bool AddGroup(string groupName)
         {
-
-            return true;
+            using (var context = new Context.AppContext())
+            {
+                var validGroup = (from x in context.Groups where x.Name == groupName select x).Any();
+                if (validGroup)
+                {
+                    return false;
+                }
+                else
+                {
+                    Group newGroup = new Group() { Name = groupName, MembersCount = 0 };
+                    context.Groups.Add(newGroup);
+                    context.SaveChanges();
+                }
+            }
+                return true;
         }
-        public bool DeleteGroup()
+        public bool DeleteGroup(string groupName)
         {
-
-            return true;
+            using (var context = new Context.AppContext())
+            {
+                var validGroup = (from x in context.Groups where x.Name == groupName select x).Any();
+                if (validGroup)
+                {
+                    var gr = (from x in context.Groups where x.Name == groupName select x).First();
+                    context.Groups.Remove(gr);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+                return true;
         }
     }
 }

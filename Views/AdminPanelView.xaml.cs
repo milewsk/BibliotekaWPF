@@ -63,7 +63,7 @@ namespace BibliotekaWPF.Views
         public void AddGroup(object sender, RoutedEventArgs e)
         {
             // powtierdzenia
-            if (groupModel.AddGroup())
+            if (groupModel.AddGroup(nameGroupText.Text))
             {
                 ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
             }
@@ -72,7 +72,7 @@ namespace BibliotekaWPF.Views
         public void DeleteGroup(object sender, RoutedEventArgs e)
         {
             // powtierdzenia
-            if (groupModel.DeleteGroup())
+            if (groupModel.DeleteGroup(namegroupToDelete.Text))
             {
                 ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
             }

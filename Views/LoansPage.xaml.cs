@@ -29,26 +29,29 @@ namespace BibliotekaWPF.Views
             this.Navbar.Content = new Navbar();
             this.Sidebar.Content = new SideBar();
 
-            List<string> loans = bookModel.GetLoans();
-            List<Button> buttonGroups = new List<Button>();
-            Dictionary<int, string> loans1 = bookModel.GetLoans1();
-
-            foreach ( var str in loans1)
+            if (Views.Navbar.getUser() != null)
             {
-                Button btn = new Button()
+                List<string> loans = bookModel.GetLoans();
+                List<Button> buttonGroups = new List<Button>();
+                Dictionary<int, string> loans1 = bookModel.GetLoans1();
+
+                foreach (var str in loans1)
                 {
-                    FontSize = 15,
-                    Style = FindResource("CustomButton") as Style,
-                    Margin = new Thickness(0, 10, 0, 10),
+                    Button btn = new Button()
+                    {
+                        FontSize = 15,
+                        Style = FindResource("CustomButton") as Style,
+                        Margin = new Thickness(0, 10, 0, 10),
 
-                }; ;
-                btn.Content = str.Value;
-                btn.Click += new RoutedEventHandler(LoanAdvance);
-                btn.Tag = str.Key.ToString();
+                    }; ;
+                    btn.Content = str.Value;
+                    btn.Click += new RoutedEventHandler(LoanAdvance);
+                    btn.Tag = str.Key.ToString();
 
-                buttonGroups.Add(btn);
+                    buttonGroups.Add(btn);
+                }
+                loansList.ItemsSource = buttonGroups;
             }
-            loansList.ItemsSource = buttonGroups;
         }
 
         private void LoanAdvance(object sender, RoutedEventArgs e)

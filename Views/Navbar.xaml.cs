@@ -34,6 +34,7 @@ namespace BibliotekaWPF.Views
                 if (CurrentUser.isAdmin == 1) 
                 {
                     NavbarButton1.Visibility = Visibility.Visible;
+                    NavbarButton1.IsEnabled = true;
                 }
             }
             
