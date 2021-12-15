@@ -1,4 +1,5 @@
-﻿using BibliotekaWPF.Views;
+﻿using BibliotekaWPF.ViewModel;
+using BibliotekaWPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,11 @@ namespace BibliotekaWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly BookModel bookModel = new BookModel();
         public MainWindow()
         {
             InitializeComponent();
+            bookModel.UpdatePenalties();
             MainView.Content = new HomePage();
         }
     }

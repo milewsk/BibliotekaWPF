@@ -29,6 +29,19 @@
         <Grid Grid.Row="1" Grid.Column="0">
             <ContentControl x:Name="Sidebar"></ContentControl>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1"></Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Text="Szczegóły wypożyczenia" FontSize="30" Margin="0,30,0,10" Foreground="Wheat"></TextBlock>
+                <TextBlock HorizontalAlignment="Center" Text="Tytuł: " Name="TitleText" FontSize="20" Foreground="White" Margin="0,5"></TextBlock>
+                <TextBlock Name="DateOfLoanText" Text="Data wypożyczenia: " FontSize="20" HorizontalAlignment="Center" Foreground="White" Margin="0,5"></TextBlock>
+                <TextBlock Name="DateOfReturnText" Text="Termin zwrotu: " FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="0,5"></TextBlock>
+                <TextBlock Name="DateOfUserReturnText" Text="Data zwrotu: " FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="0,5"></TextBlock>
+                <TextBlock Name="PriceText" Text="Do zapłaty: " FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="0,5"></TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15">
+                    <Button Height="35" Name="ReturnButton" Click="ReturnBook" Width="120" Content="Zwróć" Style="{StaticResource CustomButton}"></Button>
+                    <Button Height="35" Click="GoBack" Width="120" Content="Wróc" Style="{StaticResource CustomButton}"></Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -22,10 +22,10 @@ namespace BibliotekaWPF.Views
         private readonly BookModel bookModel = new BookModel();
         public LoansPage()
         {
-            loansList.ItemsSource = null;
+           
             InitializeComponent();
 
-            
+            loansList.ItemsSource = null;
             this.Navbar.Content = new Navbar();
             this.Sidebar.Content = new SideBar();
 
@@ -37,6 +37,7 @@ namespace BibliotekaWPF.Views
             {
                 Button btn = new Button()
                 {
+                    FontSize = 15,
                     Style = FindResource("CustomButton") as Style,
                     Margin = new Thickness(0, 10, 0, 10),
 

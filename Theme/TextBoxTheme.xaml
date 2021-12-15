@@ -19,6 +19,7 @@
                         <Trigger Property="IsFocused" Value="true">
                             <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
                         </Trigger>
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
