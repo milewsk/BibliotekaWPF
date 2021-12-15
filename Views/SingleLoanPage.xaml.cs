@@ -57,7 +57,7 @@ namespace BibliotekaWPF.Views
 
         public void GoBack(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BooksPage();
+            ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new LoansPage();
         }
 
         public void ReturnBook(object sender, RoutedEventArgs e)

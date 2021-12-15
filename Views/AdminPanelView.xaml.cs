@@ -66,6 +66,13 @@ namespace BibliotekaWPF.Views
             if (groupModel.AddGroup(nameGroupText.Text))
             {
                 ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
+                Komunikat kom = new Komunikat("Dodano grupę", true);
+                kom.Show();
+            }
+            else
+            {
+                Komunikat kom = new Komunikat("Błąd w podanych danych", false);
+                kom.Show();
             }
 
         }
@@ -75,6 +82,13 @@ namespace BibliotekaWPF.Views
             if (groupModel.DeleteGroup(namegroupToDelete.Text))
             {
                 ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
+                Komunikat kom = new Komunikat("Usunięto grupę", true);
+                kom.Show();
+            }
+            else
+            {
+                Komunikat kom = new Komunikat("Nie znaleziono grupy", false);
+                kom.Show();
             }
 
         }
@@ -86,6 +100,13 @@ namespace BibliotekaWPF.Views
             if (groupModel.AddMeeting(meetingGroupText.Text, dateMeetingText.SelectedDate.Value,DurationTimeText.Text))
             {
                 ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
+                Komunikat kom = new Komunikat("Dodano spotkanie", true);
+                kom.Show();
+            }
+            else
+            {
+                Komunikat kom = new Komunikat("Błąd w podawaniu danych", false);
+                kom.Show();
             }
 
         }
@@ -95,7 +116,14 @@ namespace BibliotekaWPF.Views
             // powtierdzenia
             if(bookModel.AddBook(titleBox.Text, nameAuthor.Text, surnameAuthor.Text, dateBox.Text, priceBox.Text, categoryBox.Text, quantityBox.Text))
             {
-                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView(); 
+                Komunikat kom = new Komunikat("Dodano książkę", true);
+                kom.Show();
+            }
+              else
+            {
+                Komunikat kom = new Komunikat("Błąd w podanych danych", false);
+                kom.Show();
             }
           
         }
@@ -105,8 +133,15 @@ namespace BibliotekaWPF.Views
             // powtierdzenia
             if (bookModel.DeleteBook(titleBoxToDelete.Text, quantityBoxToDelete.Text)) {
                 ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
+                Komunikat kom = new Komunikat("Usunięto książkę", true);
+                kom.Show();
             }
-        
+            else
+            {
+                Komunikat kom = new Komunikat("Błąd w podanych danych", false);
+                kom.Show();
+            }
+
         }
     }
 }

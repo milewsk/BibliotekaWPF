@@ -82,14 +82,12 @@ namespace BibliotekaWPF.ViewModel
             using (var context = new Context.AppContext())
             {
                 var group = (from b in context.Groups where b.Name == groupName select b).First();
-                if (IsMember(groupName))
-                {
+              
                     var query = (from g in context.User_Groups where g.IdGroup == @group.Id && g.IdUser == Views.Navbar.getUser().Id select g).First();
                     context.User_Groups.Remove(query);
                     group.MembersCount--;
                     context.Attach(group).State = EntityState.Modified;
-
-                }
+                    context.SaveChanges();              
             }
         }
 

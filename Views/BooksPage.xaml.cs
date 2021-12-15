@@ -39,6 +39,7 @@ namespace BibliotekaWPF.Views
                     Margin = new Thickness(0, 10, 0, 10),
                 };
                 btn.Content = str;
+                btn.Tag = 
                 btn.Click += new RoutedEventHandler(BookAdvance);
 
                 buttonBooks.Add(btn);

@@ -33,17 +33,26 @@ namespace BibliotekaWPF.Views
 
         public void BookPage(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BooksPage();
+            if (Views.Navbar.getUser() != null)
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BooksPage();
+            }
         }
 
         public void GruopPage(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new GroupsPage();
+            if (Views.Navbar.getUser() != null)
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new GroupsPage();
+            }
         }
 
         public void LoanPage(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new LoansPage();
+            if (Views.Navbar.getUser() != null)
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new LoansPage();
+            }
         }
     }
 }

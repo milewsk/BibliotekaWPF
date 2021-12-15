@@ -54,7 +54,7 @@ namespace BibliotekaWPF.ViewModel
                         Category catNew;
                         Author authorNew;
                         var category = (from x in context.Categories where x.Name == Category select x).Any();
-                        var author1 = (from x in context.Categories where x.Name == Category select x).Any();
+                        var author1 = (from x in context.Authors where x.Name == authorName && x.Surname == authorSurname select x).Any();
                         if (!category)
                         {
                              catNew = new Category() { Name = Category };
@@ -65,7 +65,7 @@ namespace BibliotekaWPF.ViewModel
                         {
                             catNew = (from c in context.Categories where Category == c.Name select c).First();
                         }
-                        if (author1)
+                        if (!author1)
                         {
                             authorNew = new Author() { Name = authorName, Surname = authorSurname };
                             context.Authors.Add(authorNew);
@@ -74,6 +74,9 @@ namespace BibliotekaWPF.ViewModel
                         else authorNew = (from a in context.Authors where a.Surname == authorSurname && a.Name == authorName select a).First();
 
                         Book newBook = new Book() { Title = title, Available = quantity, YearPublished = yearPub, IdCategory = catNew.Id, AuthorId = authorNew.Id, Price = price};
+                        context.Books.Add(newBook);
+                        context.SaveChanges();
+                    
                     }
                 }
             }
@@ -98,7 +101,8 @@ namespace BibliotekaWPF.ViewModel
                         var bookQuantity = (from x in context.Books where x.Title == title select x.Available).First();
                         if (bookQuantity <= quan)
                         {
-                            context.Books.Remove(book);
+                            book.Available = 0;
+                            context.Attach(book).State = EntityState.Modified;
                             context.SaveChanges();
                         }
                         else {
@@ -132,7 +136,7 @@ namespace BibliotekaWPF.ViewModel
                 var query = (from b in context.Loans where b.IdUser == Views.Navbar.getUser().Id select b).ToList();
                 foreach (Loan loan in query)
                 {
-                    var title = (from b in context.Books where b.Id == loan.IdBook select b.Title).First();
+                    var title = (from b in context.Books where b.Id == loan.IdBook select b.Title).FirstOrDefault();
                     loans.Add($"Tytuł: {title}, Data wypożyczenia: {loan.DateOfLoan}, Termin zwrotu: {loan.ReturnDate}");
                 }
             }
@@ -147,7 +151,7 @@ namespace BibliotekaWPF.ViewModel
                 var query = (from b in context.Loans where b.IdUser == Views.Navbar.getUser().Id select b).ToList();
                 foreach (Loan loan in query)
                 {
-                    var title = (from b in context.Books where b.Id == loan.IdBook select b.Title).First();
+                    var title = (from b in context.Books where b.Id == loan.IdBook select b.Title).FirstOrDefault();
                     loans.Add(loan.Id, $"Tytuł: {title}, Data wypożyczenia: {loan.DateOfLoan.ToShortDateString()}, Termin zwrotu: {loan.ReturnDate.ToShortDateString()}");
                 }
             }

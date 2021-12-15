@@ -31,7 +31,7 @@ namespace BibliotekaWPF.Views
 
             if (Views.Navbar.getUser() != null)
             {
-                List<string> loans = bookModel.GetLoans();
+               
                 List<Button> buttonGroups = new List<Button>();
                 Dictionary<int, string> loans1 = bookModel.GetLoans1();
 

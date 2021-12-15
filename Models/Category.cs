@@ -14,6 +14,6 @@ namespace BibliotekaWPF.Models
         [MaxLength(60)]
         public string Name { get; set; }
 
-        public virtual ICollection<Book> Books { get; private set; } = new ObservableCollection<Book>();
+        public  ICollection<Book> Books { get;  set; } 
     }
 }

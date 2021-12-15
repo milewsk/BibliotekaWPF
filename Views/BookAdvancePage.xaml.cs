@@ -53,9 +53,18 @@ namespace BibliotekaWPF.Views
             if (book.Available > 0)
             {
                 bookModel.BorrowBook(book.Title);
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BooksPage();
+                Komunikat kom = new Komunikat("Wypożyczono książkę", true);
+                kom.Show();
             }
+            else
+            {
+                Komunikat kom = new Komunikat("Książka nie jest dostępna", false);
+                kom.Show();
+            }
+
             // powtierdzenia
-            ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BooksPage();
+      
         }
 
         public void BuyBook(object sender, RoutedEventArgs e)
@@ -63,9 +72,17 @@ namespace BibliotekaWPF.Views
             if (book.Available > 0)
             {
                 bookModel.BuyBook(book.Title);
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BooksPage();
+                Komunikat kom = new Komunikat("Zakupiono książkę", true);
+                kom.Show();
+            }
+            else
+            {
+                Komunikat kom = new Komunikat("Książka nie jest dostępna", false);
+                kom.Show();
             }
             // powtierdzenia
-            ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BooksPage();
+            
         }
 
         public void GoBack(object sender, RoutedEventArgs e)
