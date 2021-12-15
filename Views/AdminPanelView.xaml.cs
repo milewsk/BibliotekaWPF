@@ -22,6 +22,7 @@ namespace BibliotekaWPF.Views
     public partial class AdminPanelView : Page
     {
         private readonly BookModel bookModel = new BookModel();
+        private readonly GroupModel groupModel = new GroupModel();
 
         private readonly Book book = new Book();
         private readonly Author author = new Author();
@@ -35,31 +36,77 @@ namespace BibliotekaWPF.Views
         public void Books(object sender, RoutedEventArgs e)
         {
             // powtierdzenia
+            GroupGrid.Visibility = Visibility.Collapsed;
+            MeetingsGrid.Visibility = Visibility.Collapsed;
             BookGrid.Visibility = Visibility.Visible;
+
          
         }
         public void Groups(object sender, RoutedEventArgs e)
         {
             // powtierdzenia
-           
+            BookGrid.Visibility = Visibility.Collapsed;
+            MeetingsGrid.Visibility = Visibility.Collapsed;
+            GroupGrid.Visibility = Visibility.Visible;
+          
+
         }
         public void Meetings(object sender, RoutedEventArgs e)
         {
             // powtierdzenia
-          
+            BookGrid.Visibility = Visibility.Collapsed;
+            GroupGrid.Visibility = Visibility.Collapsed;
+            MeetingsGrid.Visibility = Visibility.Visible;
+
+        }
+
+        public void AddGroup(object sender, RoutedEventArgs e)
+        {
+            // powtierdzenia
+            if (groupModel.AddGroup())
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
+            }
+
+        }
+        public void DeleteGroup(object sender, RoutedEventArgs e)
+        {
+            // powtierdzenia
+            if (groupModel.DeleteGroup())
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
+            }
+
+        }
+
+        public void AddMeeting(object sender, RoutedEventArgs e)
+        {
+
+            // powtierdzenia
+            if (groupModel.AddMeeting(meetingGroupText.Text, dateMeetingText.SelectedDate.Value,DurationTimeText.Text))
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
+            }
+
         }
 
         public void AddBook(object sender, RoutedEventArgs e)
         {
-           // powtierdzenia
-           bookModel.AddBook(titleBox.Text, nameAuthor.Text, surnameAuthor.Text, dateBox.Text, priceBox, categoryBox.Text,)
-           ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BooksPage();
+            // powtierdzenia
+            if(bookModel.AddBook(titleBox.Text, nameAuthor.Text, surnameAuthor.Text, dateBox.Text, priceBox.Text, categoryBox.Text, quantityBox.Text))
+            {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
+            }
+          
         }
 
         public void DeleteBook(object sender, RoutedEventArgs e)
         {
-           // powtierdzenia
-           ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BooksPage();
+            // powtierdzenia
+            if (bookModel.DeleteBook(titleBoxToDelete.Text, quantityBoxToDelete.Text)) {
+                ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new AdminPanelView();
+            }
+        
         }
     }
 }

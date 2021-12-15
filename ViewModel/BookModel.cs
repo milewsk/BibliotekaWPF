@@ -28,11 +28,9 @@ namespace BibliotekaWPF.ViewModel
             return books;
         }
 
-        public void AddBook(string title, string authorName, string authorSurname, string yearPubStr, string priceStr, string Category, string quantityStr)
+        public bool AddBook(string title, string authorName, string authorSurname, string yearPubStr, string priceStr, string Category, string quantityStr)
         {
             int price, quantity, yearPub;
-
-            
 
             bool tp1 = int.TryParse(priceStr, out price);
             bool tp2 = int.TryParse(quantityStr, out quantity);
@@ -46,21 +44,47 @@ namespace BibliotekaWPF.ViewModel
                                      select x).Any();
                     if (bookExist)
                     {
-                        var book = (from x in context.Books where x.Title == title select x).First();
+                        var book = (from x in context.Books where x.Title == title && x.Price == price && yearPub == x.YearPublished select x).First();
                         book.Available += quantity;
                         context.Attach(book).State = EntityState.Modified;
                         context.SaveChanges();
                     }
                     else
                     {
+                        Category catNew;
+                        Author authorNew;
                         var category = (from x in context.Categories where x.Name == Category select x).Any();
                         var author1 = (from x in context.Categories where x.Name == Category select x).Any();
-                        Book newBook = new Book() { Title = title, Available = quantity, YearPublished = yearPub, };
+                        if (!category)
+                        {
+                             catNew = new Category() { Name = Category };
+                            context.Categories.Add(catNew);
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            catNew = (from c in context.Categories where Category == c.Name select c).First();
+                        }
+                        if (author1)
+                        {
+                            authorNew = new Author() { Name = authorName, Surname = authorSurname };
+                            context.Authors.Add(authorNew);
+                            context.SaveChanges();
+                        }
+                        else authorNew = (from a in context.Authors where a.Surname == authorSurname && a.Name == authorName select a).First();
+
+                        Book newBook = new Book() { Title = title, Available = quantity, YearPublished = yearPub, IdCategory = catNew.Id, AuthorId = authorNew.Id, Price = price};
                     }
                 }
             }
+            else
+            {
+                //złe wprowadzenie liczby 
+                return false;
+            }
+            return true;
         }
-        public void DeleteBook(string title, string quantity)
+        public bool DeleteBook(string title, string quantity)
         {
             int quan;
             bool tryPar = int.TryParse(quantity, out quan);
@@ -88,6 +112,7 @@ namespace BibliotekaWPF.ViewModel
                     else
                     {
                         //tytuł nie istnieje
+                        return false;
                     }
 
                 }
@@ -95,7 +120,10 @@ namespace BibliotekaWPF.ViewModel
             else
             {
                 //zły numer
+                return false;
             }
+
+            return true;
         }
         public List<string> GetLoans() {
             List<string> loans = new List<string>();

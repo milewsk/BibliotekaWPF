@@ -78,7 +78,7 @@ namespace BibliotekaWPF.Views
         }
         public void Reset(object sender, RoutedEventArgs e)
         {
-            datesList.Items.Clear();
+            datesList.ItemsSource = null;
 
             List<string> books = bookModel.GetAllBooks();
             List<Button> buttonBooks = new List<Button>();

@@ -88,5 +88,45 @@ namespace BibliotekaWPF.ViewModel
                 }
             }
         }
+
+        public bool AddMeeting(string groupName, DateTime date, string durationStr)
+        {
+            int duration;
+           bool pr1 = int.TryParse(durationStr, out duration);
+            if (pr1)
+            {
+                using (var context = new Context.AppContext())
+                {
+                    var validGroup = (from x in context.Groups where x.Name == groupName select x).Any();
+                    if(validGroup || date > DateTime.Now)
+                    {
+                        var groupID = (from x in context.Groups where x.Name == groupName select x.Id).First();
+                        Meeting newMeet = new Meeting() { IdGroup = groupID, Duration = duration, Date = date };
+                        context.Meetings.Add(newMeet);
+                        context.SaveChanges();
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool AddGroup()
+        {
+
+            return true;
+        }
+        public bool DeleteGroup()
+        {
+
+            return true;
+        }
     }
 }
