@@ -49,7 +49,7 @@ namespace BibliotekaWPF.Views
                         HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                         Margin = new Thickness(0, 10, 0, 10),
                     };
-                    textblock.Text ="Tytuł: "+ book.Title +"Data: "+ pur.Date.ToShortDateString() +" Cena: "+book.Price;
+                    textblock.Text ="Tytuł: "+ book.Title +" Data: "+ pur.Date.ToShortDateString() +" Cena: "+book.Price;
                     PurchaseList.Add(textblock);
                 }
 

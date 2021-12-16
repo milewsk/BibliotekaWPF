@@ -37,7 +37,7 @@ namespace BibliotekaWPF.ViewModel
                 foreach (Book book in query)
                 {
                     var title = (from b in context.Books where b.Id == book.Id select b.Title).FirstOrDefault();
-                    books.Add(book.Id, $"Tytuł: {title}, ");
+                    books.Add(book.Id, $"Tytuł: {title}");
                 }
             }
             return books;
@@ -244,7 +244,7 @@ namespace BibliotekaWPF.ViewModel
                         }
                         else
                         {
-                            var newPenalty = new Penalty() { LoanID = loan.Id, Sum = 1, Date = DateTime.Now };
+                            var newPenalty = new Penalty() { LoanID = loan.Id, Sum =(DateTime.Now - loan.ReturnDate).Days, Date = DateTime.Now };
                             context.Penalties.Add(newPenalty);
                             context.SaveChanges();
                         }
@@ -286,7 +286,7 @@ namespace BibliotekaWPF.ViewModel
                 var query = (from b in context.Books where b.Title.Contains(name) select b).ToList();
                 foreach (var book in query)
                 {
-                    books.Add(book.Id,book.Title);
+                    books.Add(book.Id,"Tytuł:" +book.Title);
                 }
             }
             return books;
