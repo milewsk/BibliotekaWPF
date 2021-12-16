@@ -25,11 +25,11 @@ namespace BibliotekaWPF.Views
 
         private readonly Book book = new Book();
         private readonly Author author = new Author();
-        public BookAdvancePage(string str)
+        public BookAdvancePage(int str)
         {
             string catName;               
             using (var context = new Context.AppContext()) {
-                var bookQuery = (from b in context.Books where b.Title == str select b).First();
+                var bookQuery = (from b in context.Books where b.Id == str select b).First();
                 catName = (from c in context.Categories where c.Id == bookQuery.IdCategory select c.Name).First();
                 author = (from a in context.Authors where a.Id == bookQuery.AuthorId select a).First();
                 book = bookQuery;

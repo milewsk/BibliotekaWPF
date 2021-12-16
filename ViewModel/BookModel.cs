@@ -28,6 +28,21 @@ namespace BibliotekaWPF.ViewModel
             return books;
         }
 
+        public Dictionary<int, string> GetBooks1()
+        {
+            Dictionary<int, string> books = new Dictionary<int, string>();
+            using (var context = new Context.AppContext())
+            {
+                var query = (from b in context.Books  select b).ToList();
+                foreach (Book book in query)
+                {
+                    var title = (from b in context.Books where b.Id == book.Id select b.Title).FirstOrDefault();
+                    books.Add(book.Id, $"Tytuł: {title}, ");
+                }
+            }
+            return books;
+        }
+
         public bool AddBook(string title, string authorName, string authorSurname, string yearPubStr, string priceStr, string Category, string quantityStr)
         {
             int price, quantity, yearPub;
@@ -263,15 +278,15 @@ namespace BibliotekaWPF.ViewModel
             }
         }
         
-        public List<string> GetFillteredBooks(string name)
+        public Dictionary<int,string> GetFillteredBooks(string name)
         {
-            List<string> books = new List<string>();
+            Dictionary<int,string> books = new Dictionary<int,string>();
             using (var context = new Context.AppContext())
             {
-                var query = (from b in context.Books where b.Title.Contains(name) select b.Title).ToList();
-                foreach (string book in query)
+                var query = (from b in context.Books where b.Title.Contains(name) select b).ToList();
+                foreach (var book in query)
                 {
-                    books.Add(book);
+                    books.Add(book.Id,book.Title);
                 }
             }
             return books;

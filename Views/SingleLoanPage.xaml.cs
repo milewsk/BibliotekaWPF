@@ -36,7 +36,8 @@ namespace BibliotekaWPF.Views
 
             using (var context = new Context.AppContext())
             {
-                var bookQuery = (from b in context.Books where b.Id == zz select b).First();
+                var idbook = (from x in context.Loans where zz == x.Id select x.IdBook).FirstOrDefault();   
+                var bookQuery = (from b in context.Books where b.Id == idbook select b).First();
                 loan = (from l in context.Loans where zz == l.Id select l).First(); 
                
                 book = bookQuery;

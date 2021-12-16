@@ -28,18 +28,18 @@ namespace BibliotekaWPF.Views
             this.Sidebar.Content = new SideBar();
 
             datesList.ItemsSource = null;
-            List<string> books = bookModel.GetAllBooks();
+            Dictionary<int, string> booksAll = bookModel.GetBooks1();
             List<Button> buttonBooks = new List<Button>();
 
-            foreach(string str in books)
+            foreach( var book in booksAll)
             {
                 Button btn = new Button()
                 {
                     Style = FindResource("CustomButton") as Style,
                     Margin = new Thickness(0, 10, 0, 10),
                 };
-                btn.Content = str;
-                btn.Tag = 
+                btn.Content = book.Value;
+                btn.Tag = book.Key;
                 btn.Click += new RoutedEventHandler(BookAdvance);
 
                 buttonBooks.Add(btn);
@@ -50,7 +50,7 @@ namespace BibliotekaWPF.Views
         private void BookAdvance(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            string str = button.Content.ToString();
+            int str = (int)button.Tag;
             ((MainWindow)System.Windows.Application.Current.MainWindow).MainView.Content = new BookAdvancePage(str);
         }
 
@@ -59,17 +59,18 @@ namespace BibliotekaWPF.Views
             //datesList.Items.Clear();
             datesList.ItemsSource = null;
 
-            List<string> books = bookModel.GetFillteredBooks(FilterTextBox.Text);
+            Dictionary<int,string> books = bookModel.GetFillteredBooks(FilterTextBox.Text);
             List<Button> buttonBooks = new List<Button>();
 
-            foreach (string str in books)
+            foreach (var str in books)
             {
                 Button btn = new Button()
                 {
                     Style = FindResource("CustomButton") as Style,
                     Margin = new Thickness(0, 10, 0, 10),
-                }; ;
-                btn.Content = str;
+                }; 
+                btn.Content = str.Value;
+                btn.Tag = str.Key;
                 btn.Click += new RoutedEventHandler(BookAdvance);
                 buttonBooks.Add(btn);
             }
@@ -80,18 +81,18 @@ namespace BibliotekaWPF.Views
         public void Reset(object sender, RoutedEventArgs e)
         {
             datesList.ItemsSource = null;
-
-            List<string> books = bookModel.GetAllBooks();
+            Dictionary<int, string> booksAll = bookModel.GetBooks1();
             List<Button> buttonBooks = new List<Button>();
 
-            foreach (string str in books)
+            foreach (var book in booksAll)
             {
                 Button btn = new Button()
                 {
                     Style = FindResource("CustomButton") as Style,
                     Margin = new Thickness(0, 10, 0, 10),
-                }; ;
-                btn.Content = str;
+                };
+                btn.Content = book.Value;
+                btn.Tag = book.Key;
                 btn.Click += new RoutedEventHandler(BookAdvance);
 
                 buttonBooks.Add(btn);
